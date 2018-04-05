@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>東京東筑会年会費納入</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.7.1/modernizr.min.js"></script>
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+<script src="javascripts/jquery.xdomainajax.js"></script>
+<script src="javascripts/ajaxzip2.js"></script>
+<script src="javascripts/jquery.payment.js"></script>
+<script src="javascripts/boot.js"></script>
+<!--[if lt IE 9]><script type="text/javascript" src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" type="text/css">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
+<link rel="stylesheet" href="stylesheets/style.css" type="text/css">
+</head>
+
+<div class="container">
+
+<div class="jumbotron">
+<h1>東京東筑会オンライン年会費納入</h1>
+</div>
+
+<form class="form-horizontal" role="form">
+
+<section class="contact">
+<h2>お名前</h2>
+
+  <div class="form-group">
+    <label for="name_kanji_family" class="col-sm-2 control-label">お名前（漢字）</label>
+    <div class="input-group col-sm-3 continue">
+      <span class="input-group-addon">姓</span>
+      <input type="text" class="form-control" name="name_kanji_family" id="name_kanji_family" placeholder="漢字" x-autocompletetype="surname" required>
+    </div>
+    <div class="input-group col-sm-3">
+      <span class="input-group-addon">名</span>
+      <input type="text" class="form-control" name="name_kanji_given" id="name_kanji_given" placeholder="漢字" x-autocompletetype="given-name" required>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="pref" class="col-sm-2 control-label"></label>
+    <div class="col-sm-6">
+      <span class="help-block">高校在学時の姓名を記載ください。</span>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="pref" class="col-sm-2 control-label">卒業期</label>
+    <div class="col-sm-6">
+      <select name="pref" id="pref" class="form-control" x-autocompletetype="region" required>
+      <option value="" selected="selected">-- 卒業期 --</option>
+<option value="40">40期(1942年/昭和17年卒)</option>
+<option value="41">41期(1943年/昭和18年卒)</option>
+<option value="42">42期(1944年/昭和19年卒)</option>
+<option value="43">43期(1945年/昭和20年卒)</option>
+<option value="44">44期(1946年/昭和21年卒)</option>
+<option value="45">45期(1947年/昭和22年卒)</option>
+<option value="46">46期(1948年/昭和23年卒)</option>
+<option value="47">47期(1949年/昭和24年卒)</option>
+<option value="48">48期(1950年/昭和25年卒)</option>
+<option value="49">49期(1951年/昭和26年卒)</option>
+<option value="50">50期(1952年/昭和27年卒)</option>
+<option value="51">51期(1953年/昭和28年卒)</option>
+<option value="52">52期(1954年/昭和29年卒)</option>
+<option value="53">53期(1955年/昭和30年卒)</option>
+<option value="54">54期(1956年/昭和31年卒)</option>
+<option value="55">55期(1957年/昭和32年卒)</option>
+<option value="56">56期(1958年/昭和33年卒)</option>
+<option value="57">57期(1959年/昭和34年卒)</option>
+<option value="58">58期(1960年/昭和35年卒)</option>
+<option value="59">59期(1961年/昭和36年卒)</option>
+<option value="60">60期(1962年/昭和37年卒)</option>
+<option value="61">61期(1963年/昭和38年卒)</option>
+<option value="62">62期(1964年/昭和39年卒)</option>
+<option value="63">63期(1965年/昭和40年卒)</option>
+<option value="64">64期(1966年/昭和41年卒)</option>
+<option value="65">65期(1967年/昭和42年卒)</option>
+<option value="66">66期(1968年/昭和43年卒)</option>
+<option value="67">67期(1969年/昭和44年卒)</option>
+<option value="68">68期(1970年/昭和45年卒)</option>
+<option value="69">69期(1971年/昭和46年卒)</option>
+<option value="70">70期(1972年/昭和47年卒)</option>
+<option value="71">71期(1973年/昭和48年卒)</option>
+<option value="72">72期(1974年/昭和49年卒)</option>
+<option value="73">73期(1975年/昭和50年卒)</option>
+<option value="74">74期(1976年/昭和51年卒)</option>
+<option value="75">75期(1977年/昭和52年卒)</option>
+<option value="76">76期(1978年/昭和53年卒)</option>
+<option value="77">77期(1979年/昭和54年卒)</option>
+<option value="78">78期(1980年/昭和55年卒)</option>
+<option value="79">79期(1981年/昭和56年卒)</option>
+<option value="80">80期(1982年/昭和57年卒)</option>
+<option value="81">81期(1983年/昭和58年卒)</option>
+<option value="82">82期(1984年/昭和59年卒)</option>
+<option value="83">83期(1985年/昭和60年卒)</option>
+<option value="84">84期(1986年/昭和61年卒)</option>
+<option value="85">85期(1987年/昭和62年卒)</option>
+<option value="86">86期(1988年/昭和63年卒)</option>
+<option value="87">87期(1989年/平成1年卒)</option>
+<option value="88">88期(1990年/平成2年卒)</option>
+<option value="89">89期(1991年/平成3年卒)</option>
+<option value="90">90期(1992年/平成4年卒)</option>
+<option value="91">91期(1993年/平成5年卒)</option>
+<option value="92">92期(1994年/平成6年卒)</option>
+<option value="93">93期(1995年/平成7年卒)</option>
+<option value="94">94期(1996年/平成8年卒)</option>
+<option value="95">95期(1997年/平成9年卒)</option>
+<option value="96">96期(1998年/平成10年卒)</option>
+<option value="97">97期(1999年/平成11年卒)</option>
+<option value="98">98期(2000年/平成12年卒)</option>
+<option value="99">99期(2001年/平成13年卒)</option>
+<option value="100">100期(2002年/平成14年卒)</option>
+<option value="101">101期(2003年/平成15年卒)</option>
+<option value="102">102期(2004年/平成16年卒)</option>
+<option value="103">103期(2005年/平成17年卒)</option>
+<option value="104">104期(2006年/平成18年卒)</option>
+<option value="105">105期(2007年/平成19年卒)</option>
+<option value="106">106期(2008年/平成20年卒)</option>
+<option value="107">107期(2009年/平成21年卒)</option>
+<option value="108">108期(2010年/平成22年卒)</option>
+<option value="109">109期(2011年/平成23年卒)</option>
+<option value="110">110期(2012年/平成24年卒)</option>
+<option value="111">111期(2013年/平成25年卒)</option>
+<option value="112">112期(2014年/平成26年卒)</option>
+<option value="113">113期(2015年/平成27年卒)</option>
+<option value="114">114期(2016年/平成28年卒)</option>
+<option value="115">115期(2017年/平成29年卒)</option>
+<option value="116">116期(2018年/平成30年卒)</option>
+<option value="0">不明</option>
+<option value="-1">非卒業生</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="email" class="col-sm-2 control-label">メールアドレス</label>
+    <div class="col-sm-6">
+      <input type="email" class="form-control alphabet" name="email" id="email" pattern="^[^0-9][a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[@][a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,4}$" x-autocompletetype="email" required>
+      <span class="help-block"><span class="label label-default">例</span>test@example.com</span>
+    </div>
+  </div>
+
+  <div class="form-group hide">
+    <label for="email_confirm" class="col-sm-2 control-label">ご確認</label>
+    <div class="col-sm-10">
+      <div id="email_confirm"></div>
+      <span class="help-block">入力ミスが多くなっておりますので、一度ご確認ください</span>
+    </div>
+  </div>
+
+</section>
+
+<h2>クレジットカード情報</h2>
+
+<section class="payment">
+
+  <div class="form-group">
+    <label for="pref" class="col-sm-2 control-label"></label>
+    <div class="col-sm-9">
+      <span class="help-block">下記のマークのカードブランドがご利用いただけます。</span>
+      <img src="images/card_accept.png">
+    </div>
+  </div>
+  <div id="creditcard">
+    <div class="form-group">
+      <label for="cc_number" class="col-sm-2 control-label">カード番号</label>
+      <div class="col-sm-6">
+        <input type="text" class="form-control cc-number alphabet" name="cc_number" id="cc_number" pattern="[\d\s]{13,19}" x-autocompletetype="cc-number" data-numeric required>
+        <span class="help-block"><span class="label label-default">例</span>0123 4567 8901 2345</span>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="cc-exp" class="col-sm-2 control-label">有効期限</label>
+      <div class="col-sm-3">
+        <input type="text" class="form-control cc-exp alphabet" name="cc-exp" id="cc-exp" pattern="[0-1][0-9][\s\/]*[0-9][0-9]" data-numeric x-autocompletetype="cc-exp" placeholder="MM/YY" required maxlength="7">
+        <span class="help-block"><span class="label label-default">例</span>12 / 05（月 / 年）</span>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="cc-csc" class="col-sm-2 control-label">セキュリティコード</label>
+      <div class="col-sm-3">
+        <input type="text" class="form-control cc-csc alphabet" name="cc-csc" id="cc-csc" pattern="\d{3,4}" placeholder="XXX" data-numeric required maxlength="4">
+        <span class="help-block">カードの裏面にある数桁の数字です</span>
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="pref" class="col-sm-2 control-label"></label>
+    <div class="col-sm-9">
+      <span class="help-block">※ご入力いただいたカード情報は、東京東筑会では一切保存しません。</span>
+      <span class="help-block">※本決済では、カード情報は暗号化されて送信されます。安心してご利用ください。</span>
+    </div>
+  </div>
+
+</section>
+
+<hr>
+
+<nav class="col-sm-10" role="navigation">
+<button type="button" class="btn btn-primary btn-lg btn-block"><span class="glyphicon glyphicon-chevron-right"></span> 年会費を支払う</button>
+</nav>
+
+</form>
+
+</div>
+
+</body>
+</html>
