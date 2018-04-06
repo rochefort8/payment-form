@@ -12,9 +12,9 @@
 <script src="javascripts/ajaxzip2.js"></script>
 <script src="javascripts/jquery.payment.js"></script>
 
-<script src="https://js.stripe.com/v2/"></script>
+<script src="https://js.stripe.com/v3/"></script>
 <script src="javascripts/boot.js"></script>
-
+<script src="javascripts/stripe.js"></script>
 
 <!--[if lt IE 9]><script type="text/javascript" src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
 <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" type="text/css">
@@ -171,15 +171,20 @@
     <div class="form-group">
       <label for="cc_number" class="col-sm-2 control-label">カード番号</label>
       <div class="col-sm-6">
-        <input type="text" class="form-control cc-number alphabet" name="cc_number" id="cc_number" pattern="[\d\s]{13,19}" x-autocompletetype="cc-number" data-numeric required>
+        <span id="card-number" class="form-control">
+                <!-- Stripe Card Element -->
+        </span>
         <span class="help-block"><span class="label label-default">例</span>0123 4567 8901 2345</span>
+
       </div>
     </div>
 
     <div class="form-group">
       <label for="cc-exp" class="col-sm-2 control-label">有効期限</label>
       <div class="col-sm-3">
-        <input type="text" class="form-control cc-exp alphabet" name="cc-exp" id="cc-exp" pattern="[0-1][0-9][\s\/]*[0-9][0-9]" data-numeric x-autocompletetype="cc-exp" placeholder="MM/YY" required maxlength="7">
+        <span id="card-exp" class="form-control">
+          <!-- Stripe Card Expiry Element -->
+        </span>
         <span class="help-block"><span class="label label-default">例</span>12 / 05（月 / 年）</span>
       </div>
     </div>
@@ -187,7 +192,9 @@
     <div class="form-group">
       <label for="cc-csc" class="col-sm-2 control-label">セキュリティコード</label>
       <div class="col-sm-3">
-        <input type="text" class="form-control cc-csc alphabet" name="cc-csc" id="cc-csc" pattern="\d{3,4}" placeholder="XXX" data-numeric required maxlength="4">
+        <span id="card-cvc" class="form-control">
+        <!-- Stripe CVC Element -->
+        </span>
         <span class="help-block">カードの裏面にある数桁の数字です</span>
       </div>
     </div>
@@ -205,7 +212,7 @@
 <hr>
 
 <nav class="col-sm-10" role="navigation">
-<button type="button" class="btn btn-primary btn-lg btn-block"><span class="glyphicon glyphicon-chevron-right"></span> 年会費を支払う</button>
+<button type="button" id="payment-submit" class="btn btn-primary btn-lg btn-block"><span class="glyphicon glyphicon-chevron-right"></span> 年会費を支払う</button>
 </nav>
 
 </form>
