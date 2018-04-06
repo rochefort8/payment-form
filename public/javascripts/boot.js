@@ -6,11 +6,53 @@ $(function(){
   formAction.kanjiConverter();
   formAction.zipConverter();
   formAction.datePicker();
-  
+  formAction.onSubmit();
 });
 
 
 formAction = function (){};
+
+formAction.onSubmit = function(){
+    $('button.btn-lg').on('click', function(e) {
+	    payWithStripe();
+	});
+}
+
+function payWithStripe(){
+
+    var PublishableKey = 'pk_test_K3rm5fd3O845Y425biVp6d9D';
+    Stripe.setPublishableKey(PublishableKey);
+
+    var ccData = {
+	number: '4242424242424242',
+	cvc: '123',
+	exp_month: '12',
+	exp_year: '22'
+    };
+    Stripe.card.createToken(ccData,stripeResponseHandler);
+    return false ;
+}
+
+function stripeResponseHandler(status, response) {
+    if (response.error) {
+	console.log(response.error.message) ;
+    } else {
+	console.log(response.id) ;
+
+	var token = response.id;
+
+	// AJAX - you would send 'token' to your server here.
+	$.post('/charge', {
+		token: token
+		    })
+	    // Assign handlers immediately after making the request,
+	    .done(function(data, textStatus, jqXHR) {
+		    $form.find('.subscribe').html('Payment successful <i class="fa fa-check"></i>');
+		})
+	    .fail(function(jqXHR, textStatus, errorThrown) {
+		});
+    }
+}
 
 // 必須入力項目の入力チェック
 formAction.checkPattern = function(){
