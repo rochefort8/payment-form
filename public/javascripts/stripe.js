@@ -51,7 +51,6 @@ $(document).ready(function(){
                 }else{
 		    var token = result.token.id;
 		    // AJAX - you would send 'token' to your server here.
-		    console.log(token);
 
 		    $.post('/charge', {
 			    'token': token

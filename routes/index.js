@@ -12,7 +12,7 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/charge', async (req, res, next) => {
-  let token = req.body;	
+  let {token} = req.body;
 
   console.log(token);
 
