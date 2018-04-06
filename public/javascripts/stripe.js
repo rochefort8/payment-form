@@ -49,7 +49,21 @@ $(document).ready(function(){
                 if(result.error && result.error.message){
                     alert(result.error.message);
                 }else{
-                    alert(result.token.id);
+		    var token = result.token.id;
+		    // AJAX - you would send 'token' to your server here.
+		    console.log(token);
+
+		    $.post('/charge', {
+			    'token': token
+			})
+			// Assign handlers immediately after making the request,
+			.done(function(data, textStatus, jqXHR) {
+				console.log("Success");
+			    })
+			.fail(function(jqXHR, textStatus, errorThrown) {
+				console.log("Failure");
+			    });
+
                 }
             });
        });
