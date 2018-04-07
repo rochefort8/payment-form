@@ -106,6 +106,10 @@ div.input-group{
   color: #3c763d;
 }
 
+.StripeElement--complete {
+  background: rgb(223, 240, 217);
+}
+
 .StripeElement--webkit-autofill {
   background-color: #fefde5 !important;
 }

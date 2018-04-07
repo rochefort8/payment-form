@@ -38,6 +38,25 @@ $(document).ready(function(){
         });
         exp.mount('#card-exp');
 
+	// Handle real-time validation errors from the card Element.
+	card.addEventListener('change', function(event) {
+		console.log(event);
+	    });
+
+	// Handle real-time validation errors from the card Element.
+	cvc.addEventListener('change', function(event) {
+		console.log(event);
+	    });
+
+	// Handle real-time validation errors from the card Element.
+	exp.addEventListener('change', function(event) {
+		console.log(event);
+	    });
+	/*
+ {elementType: "cardCvc", error: undefined, value: undefined, empty: false, complete: false}
+	*/
+
+
         // Submit
         $('#payment-submit').on('click', function(e){
             e.preventDefault();
