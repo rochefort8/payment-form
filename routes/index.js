@@ -20,7 +20,8 @@ router.post('/charge', async (req, res, next) => {
 	  amount: 3000,
 	  currency: "jpy",
 	  card: token,
-	  description: "payinguser@example.com"
+	  description: "payinguser@example.com",
+	  receipt_email: 'yuji.ogihara.85@gmail.com'
       }, function(err, charge) {
 	  //	  if (err && err.type === 'StripeCardError') {
 	  if (err) {

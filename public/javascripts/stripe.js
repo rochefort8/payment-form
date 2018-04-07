@@ -47,6 +47,7 @@ $(document).ready(function(){
 	    var graduate = $('#graduate').val() ;
 	    var email = $('#email').val() ;
 
+	    // Put name with graduates onto the thanks page
 	    var thanksTo= graduate + '期' + ' ' + name_kanji_family + name_kanji_given + ' 様' ;
 	    document.getElementById("thanks-to").textContent=thanksTo;
 
