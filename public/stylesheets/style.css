@@ -73,6 +73,22 @@ div.input-group{
   background: rgba(255, 165, 0, 0.4) none;
 }
 
+/* Button with Tochiku color */
+.btn-tochiku-color {
+  background: rgb(136, 0, 0);
+  color: #57450;
+  border: none;
+  -moz-box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+  box-shadow: none !important;
+}
+.btn-tochiku-color:hover, .btn-yellow:focus {
+  background: rgb(252, 255, 179);
+}
+.btn-tochiku-color:active {
+  background: rgb(247, 255, 71);
+}
+
 @media (max-width: 768px){
   .continue,
   .datepicker{
