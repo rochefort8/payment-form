@@ -15,6 +15,7 @@
 <script src="https://js.stripe.com/v3/"></script>
 <script src="javascripts/boot.js"></script>
 <script src="javascripts/stripe.js"></script>
+<script src="javascripts/jquery.blockUI.js"></script>
 
 <!--[if lt IE 9]><script type="text/javascript" src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
 <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" type="text/css">
@@ -28,7 +29,8 @@
 <h1>東京東筑会オンライン年会費納入</h1>
 </div>
 
-<form class="form-horizontal" role="form">
+<!-- Payment form  -->
+<form class="form-horizontal" role="form" id="payment-form">
 
 <section class="contact">
 <h2>お名前</h2>
@@ -51,9 +53,9 @@
     </div>
   </div>
   <div class="form-group">
-    <label for="pref" class="col-sm-2 control-label">卒業期</label>
+    <label for="graduate" class="col-sm-2 control-label">卒業期</label>
     <div class="col-sm-6">
-      <select name="pref" id="pref" class="form-control" x-autocompletetype="region" required>
+      <select name="graduate" id="graduate" class="form-control" x-autocompletetype="region" required>
       <option value="" selected="selected">-- 卒業期 --</option>
 <option value="40">40期(1942年/昭和17年卒)</option>
 <option value="41">41期(1943年/昭和18年卒)</option>
@@ -217,7 +219,23 @@
 
 </form>
 
+<!-- Now processing -->
+<div id="tallContent" style="display:none">
+  <h2>しばらくお待ち下さい</h2>
+  <p><img src="images/processing.gif" class="img-responsive center-block">></p>
 </div>
+
+<!-- Thanks page -->
+<div id="thanks" style="display:none">
+  <h1><div id="thanks-to">XX期 YY ZZ様</div></h1>
+</div>
+
+<!-- Thanks page -->
+<div id="payment-error" style="display:none">
+  <h1> 決裁できませんでした。</h1>
+</div>
+
+</div> <!-- container -->
 
 </body>
 </html>

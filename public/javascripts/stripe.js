@@ -41,13 +41,36 @@ $(document).ready(function(){
         // Submit
         $('#payment-submit').on('click', function(e){
             e.preventDefault();
+
+	    var name_kanji_family = $('#name_kanji_family').val() ;
+	    var name_kanji_given = $('#name_kanji_given').val() ;
+	    var graduate = $('#graduate').val() ;
+	    var email = $('#email').val() ;
+
+	    var thanksTo= graduate + '期' + ' ' + name_kanji_family + name_kanji_given + ' 様' ;
+	    document.getElementById("thanks-to").textContent=thanksTo;
+
+	    $.blockUI({ css: { 
+			border: 'none', 
+			    padding: '15px',
+			    backgroundColor: '#fff',
+			    color: '#333', 
+			    '-webkit-border-radius': '10px', 
+			    '-moz-border-radius': '10px', 
+			    opacity: .8 
+			    },
+			message: $('#tallContent')} 
+		);
+
             var cardData = {
                 'name': $('#name').val()
             };
             stripe.createToken(card, cardData).then(function(result) {
                 console.log(result);
+
                 if(result.error && result.error.message){
                     alert(result.error.message);
+		    $.unblockUI();
                 }else{
 		    var token = result.token.id;
 		    // AJAX - you would send 'token' to your server here.
@@ -57,13 +80,18 @@ $(document).ready(function(){
 			})
 			// Assign handlers immediately after making the request,
 			.done(function(data, textStatus, jqXHR) {
+				$.unblockUI();
 				console.log("Success");
+				$('#payment-form').hide();
+				$('#thanks').show();
 			    })
 			.fail(function(jqXHR, textStatus, errorThrown) {
+				$.unblockUI();
 				console.log("Failure");
 			    });
 
                 }
+
             });
        });
 });
