@@ -192,7 +192,7 @@
     }
 
     function getGenericError() {
-      return $el.attr('data-error')
+	return $el.attr('data-error')
     }
 
     function getErrorMessage(key) {

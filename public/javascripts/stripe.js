@@ -41,17 +41,25 @@ $(document).ready(function(){
 	// Handle real-time validation errors from the card Element.
 	card.addEventListener('change', function(event) {
 		console.log(event);
+
 		if (event.complete) {
 		    $('.card-number').removeClass('has-error has-success');
 		    $('.card-number').addClass('has-success');
+		    $('input[name="card-validation"]').val('1');
+		    $('input[name="card-validation"]').val('1');
+		    $('input[name="card-validation"]').trigger('change');
 		} else {
 		    $('.card-number').removeClass('has-error has-success');
 		    $('.card-number').addClass('has-error');
+		    $('input[name="card-validation"]').val('');
+		    $('input[name="card-validation"]').val('');
+		    $('input[name="card-validation"]').trigger('change');
 		}
 	    });
 
 	cvc.addEventListener('change', function(event) {
 		console.log(event);
+
 		if (event.complete) {
 		    $('.card-cvc').removeClass('has-error has-success');
 		    $('.card-cvc').addClass('has-success');
