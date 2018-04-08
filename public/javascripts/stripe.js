@@ -45,20 +45,16 @@ $(document).ready(function(){
 		if (event.complete) {
 		    $('.card-number').removeClass('has-error has-success');
 		    $('.card-number').addClass('has-success');
-		    $('input[name="card-validation"]').val('1');
-		    $('input[name="card-validation"]').val('1');
-		    $('input[name="card-validation"]').trigger('change');
 		} else {
 		    $('.card-number').removeClass('has-error has-success');
 		    $('.card-number').addClass('has-error');
-		    $('input[name="card-validation"]').val('');
-		    $('input[name="card-validation"]').val('');
-		    $('input[name="card-validation"]').trigger('change');
 		}
+		validateCardInfoAndTrigger();
 	    });
 
 	cvc.addEventListener('change', function(event) {
 		console.log(event);
+
 
 		if (event.complete) {
 		    $('.card-cvc').removeClass('has-error has-success');
@@ -67,10 +63,10 @@ $(document).ready(function(){
 		    $('.card-cvc').removeClass('has-error has-success');
 		    $('.card-cvc').addClass('has-error');
 		}
+		validateCardInfoAndTrigger();
 	    });
 
 	exp.addEventListener('change', function(event) {
-		console.log(event);
 		if (event.complete) {
 		    $('.card-exp').removeClass('has-error has-success');
 		    $('.card-exp').addClass('has-success');
@@ -78,8 +74,20 @@ $(document).ready(function(){
 		    $('.card-exp').removeClass('has-error has-success');
 		    $('.card-exp').addClass('has-error');
 		}
+		validateCardInfoAndTrigger();
 	    });
 
+	function validateCardInfoAndTrigger() {
+		if($('.card-number').hasClass('has-success') &&
+		   $('.card-cvc').hasClass('has-success') &&
+		   $('.card-exp').hasClass('has-success')) {
+		    $('input[name="card-validation"]').val('1');
+		    $('input[name="card-validation"]').trigger('change');
+		} else {
+		    $('input[name="card-validation"]').val('');
+		    $('input[name="card-validation"]').trigger('change');
+		}
+	}
 
         // Submit
         $('#payment-submit').on('click', function(e){
