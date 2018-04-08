@@ -5,21 +5,14 @@
 <title>東京東筑会年会費納入</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.7.1/modernizr.min.js"></script>
+<!-- jquery/Bootstrap/Stripe -->
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
-<script src="javascripts/jquery.xdomainajax.js"></script>
-<script src="javascripts/ajaxzip2.js"></script>
-<script src="javascripts/jquery.payment.js"></script>
-
 <script src="https://js.stripe.com/v3/"></script>
-<!--
-<script src="javascripts/boot.js"></script>
--->
-<script src="javascripts/validator.js"></script>
-
-<script src="javascripts/stripe.js"></script>
 <script src="javascripts/jquery.blockUI.js"></script>
+
+<script src="javascripts/validator.js"></script>
+<script src="javascripts/stripe.js"></script>
 
 <!--[if lt IE 9]><script type="text/javascript" src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
 <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" type="text/css">
@@ -218,7 +211,7 @@
 <hr>
 
 <nav class="col-sm-10" role="navigation">
-<button type="button" id="payment-submit" class="btn btn-primary btn-lg btn-block"><span class="glyphicon glyphicon-chevron-right"></span> 年会費を支払う</button>
+<button type="submit" id="payment-submit" class="btn btn-primary btn-lg btn-block"><span class="glyphicon glyphicon-chevron-right"></span> 年会費を支払う</button>
 </nav>
 
 </form>
