@@ -13,7 +13,11 @@
 <script src="javascripts/jquery.payment.js"></script>
 
 <script src="https://js.stripe.com/v3/"></script>
+<!--
 <script src="javascripts/boot.js"></script>
+-->
+<script src="javascripts/validator.js"></script>
+
 <script src="javascripts/stripe.js"></script>
 <script src="javascripts/jquery.blockUI.js"></script>
 
@@ -30,12 +34,12 @@
 </div>
 
 <!-- Payment form  -->
-<form class="form-horizontal" role="form" id="payment-form">
+<form class="form-horizontal" role="form" id="payment-form" data-toggle="validator">
 
 <section class="contact">
 <h2>お名前</h2>
 
-  <div class="form-group">
+  <div class="form-group has-feedback">
     <label for="name_kanji_family" class="col-sm-2 control-label">お名前（漢字）</label>
     <div class="input-group col-sm-3 continue">
       <span class="input-group-addon">姓</span>
@@ -52,7 +56,7 @@
       <span class="help-block">高校在学時の姓名を記載ください。</span>
     </div>
   </div>
-  <div class="form-group">
+  <div class="form-group has-feedback">
     <label for="graduate" class="col-sm-2 control-label">卒業期</label>
     <div class="col-sm-6">
       <select name="graduate" id="graduate" class="form-control" x-autocompletetype="region" required>
@@ -140,7 +144,7 @@
     </div>
   </div>
 
-  <div class="form-group">
+  <div class="form-group has-feedback">
     <label for="email" class="col-sm-2 control-label">メールアドレス</label>
     <div class="col-sm-6">
       <input type="email" class="form-control alphabet" name="email" id="email" pattern="^[^0-9][a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[@][a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,4}$" x-autocompletetype="email" required>
@@ -170,7 +174,7 @@
     </div>
   </div>
   <div id="creditcard">
-    <div class="form-group">
+    <div class="form-group card-number">
       <label for="cc_number" class="col-sm-2 control-label">カード番号</label>
       <div class="col-sm-6">
         <span id="card-number" class="form-control">
@@ -181,7 +185,7 @@
       </div>
     </div>
 
-    <div class="form-group">
+    <div class="form-group card-exp">
       <label for="cc-exp" class="col-sm-2 control-label">有効期限</label>
       <div class="col-sm-3">
         <span id="card-exp" class="form-control">
@@ -191,8 +195,8 @@
       </div>
     </div>
 
-    <div class="form-group">
-      <label for="cc-csc" class="col-sm-2 control-label">セキュリティコード</label>
+    <div class="form-group card-cvc">
+      <label for="card-cvc" class="col-sm-2 control-label">セキュリティコード</label>
       <div class="col-sm-3">
         <span id="card-cvc" class="form-control">
         <!-- Stripe CVC Element -->

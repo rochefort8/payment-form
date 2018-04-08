@@ -41,20 +41,36 @@ $(document).ready(function(){
 	// Handle real-time validation errors from the card Element.
 	card.addEventListener('change', function(event) {
 		console.log(event);
+		if (event.complete) {
+		    $('.card-number').removeClass('has-error has-success');
+		    $('.card-number').addClass('has-success');
+		} else {
+		    $('.card-number').removeClass('has-error has-success');
+		    $('.card-number').addClass('has-error');
+		}
 	    });
 
-	// Handle real-time validation errors from the card Element.
 	cvc.addEventListener('change', function(event) {
 		console.log(event);
+		if (event.complete) {
+		    $('.card-cvc').removeClass('has-error has-success');
+		    $('.card-cvc').addClass('has-success');
+		} else {
+		    $('.card-cvc').removeClass('has-error has-success');
+		    $('.card-cvc').addClass('has-error');
+		}
 	    });
 
-	// Handle real-time validation errors from the card Element.
 	exp.addEventListener('change', function(event) {
 		console.log(event);
+		if (event.complete) {
+		    $('.card-exp').removeClass('has-error has-success');
+		    $('.card-exp').addClass('has-success');
+		} else {
+		    $('.card-exp').removeClass('has-error has-success');
+		    $('.card-exp').addClass('has-error');
+		}
 	    });
-	/*
- {elementType: "cardCvc", error: undefined, value: undefined, empty: false, complete: false}
-	*/
 
 
         // Submit

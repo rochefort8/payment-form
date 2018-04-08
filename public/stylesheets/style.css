@@ -4,6 +4,7 @@ div.container, section{
 
 /* 入力ステータス */
 
+/*
 *[required],
 .required{
   background-color: rgba(255, 221, 221, 0.7);
@@ -13,6 +14,7 @@ div.container, section{
 .required.dealed{
   background-color: rgba(223, 240, 216, 1);
 }
+*/
 
 .caution{
   background-color: rgba(252, 248, 227, 1);
@@ -89,6 +91,8 @@ div.input-group{
   background: rgb(247, 255, 71);
 }
 
+/* Additional style for StripeElement */
+/*
 .StripeElement {
   color: #a94442;
   background-color: #ffe7e7;
@@ -102,17 +106,18 @@ div.input-group{
           box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, .6);
 }
 
-.StripeElement--invalid {
-  color: #3c763d;
+.StripeElement--invalid  {
+  border-color: #a94442;
 }
 
 .StripeElement--complete {
-  background: rgb(223, 240, 217);
+  border-color: #3c763d;
 }
 
 .StripeElement--webkit-autofill {
   background-color: #fefde5 !important;
 }
+*/
 
 @media (max-width: 768px){
   .continue,

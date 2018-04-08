@@ -1,8 +1,8 @@
 $(function(){
 
   formAction.checkPattern();
-  formAction.emailImitater();
-  formAction.checkAllFieldFilled();
+	//  formAction.emailImitater();
+	//  formAction.checkAllFieldFilled();
 });
 
 formAction = function (){};
