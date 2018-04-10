@@ -130,7 +130,7 @@ $(document).ready(function(){
 	    $.blockUI({ css: { 
 			border: 'none', 
 			    padding: '15px',
-			    backgroundColor: '#fff',
+			    backgroundColor: 'none',
 			    color: '#333', 
 			    '-webkit-border-radius': '10px', 
 			    '-moz-border-radius': '10px', 
