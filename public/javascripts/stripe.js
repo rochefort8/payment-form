@@ -157,15 +157,16 @@ $(document).ready(function(){
 			})
 			// Assign handlers immediately after making the request,
 			.done(function(data, textStatus, jqXHR) {
-				$.unblockUI();
-				console.log("Success");
-				$('#payment-form').hide();
-				$('#thanks').show();
-			    })
+			    $.unblockUI();
+			    $('#payment-form').hide();
+			    $('#thanks').show();
+			})
 			.fail(function(jqXHR, textStatus, errorThrown) {
-				$.unblockUI();
-				console.log("Failure");
-			    });
+			    $.unblockUI();
+			    var errorType = 'Error type : ' + jqXHR.responseJSON.type + '\n'; 
+			    var errorMessage = 'Message : ' + jqXHR.responseJSON.message;
+			    alert('支払いできませんでした。' + '\n' + errorType + errorMessage) ;
+			});
 
                 }
 

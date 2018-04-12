@@ -26,8 +26,8 @@ router.post('/charge', async (req, res, next) => {
 	  //	  if (err && err.type === 'StripeCardError') {
 	  if (err) {
 	      console.log(JSON.stringify(err, null, 2));
+	      return res.status(500).json({type : err.type, message: err.message});
 	  }
-	  res.send("completed payment!")
       });
 
 });
