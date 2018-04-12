@@ -28,8 +28,8 @@ router.post('/charge', async (req, res, next) => {
 	      console.log(JSON.stringify(err, null, 2));
 	      return res.status(500).json({type : err.type, message: err.message});
 	  }
+	  res.send("completed payment!")	  
       });
-
 });
 
 module.exports = router;
