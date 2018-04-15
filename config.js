@@ -33,6 +33,9 @@ module.exports = {
     secretKey: process.env.STRIPE_SECRET_KEY,
   },
 
+  email: {
+	apiKey: process.env.SENDGRID_API_KEY,
+  },
   // Server port.
   port: process.env.PORT || 8000,
 };

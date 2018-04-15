@@ -153,7 +153,11 @@ $(document).ready(function(){
 		    // AJAX - you would send 'token' to your server here.
 
 		    $.post('/charge', {
-			    'token': token
+			    'token': token,
+			    'graduate': graduate,
+			    'lastname': name_kanji_family,
+			    'firstname': name_kanji_given,
+			    'email': email
 			})
 			// Assign handlers immediately after making the request,
 			.done(function(data, textStatus, jqXHR) {

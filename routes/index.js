@@ -1,35 +1,35 @@
+/*
+ *
+ *
+ *
+ *
+ */
 var express = require('express');
 var router = express.Router();
 
-const charge = require('../server/charge');
-
-const stripe = require('stripe')('sk_test_J98lGoxskfLVMntCGYI1b0D0');
-stripe.setApiVersion('2018-02-06');
+const payment = require('../server/payment');
+const emailDelivery = require('../server/email');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
+/* Payment */
 router.post('/charge', async (req, res, next) => {
-  let {token} = req.body;
+  let {token,graduate,lastname,firstname,email} = req.body;
 
-  console.log(token);
+  var toWhom = graduate + '期:' + lastname + ' ' + firstname;
 
-  var charge = stripe.charges.create({
-	  amount: 3000,
-	  currency: "jpy",
-	  card: token,
-	  description: "payinguser@example.com",
-	  receipt_email: 'yuji.ogihara.85@gmail.com'
-      }, function(err, charge) {
-	  //	  if (err && err.type === 'StripeCardError') {
-	  if (err) {
-	      console.log(JSON.stringify(err, null, 2));
-	      return res.status(500).json({type : err.type, message: err.message});
-	  }
-	  res.send("completed payment!")	  
-      });
+  try {
+    let charge = await payment.charge(token,toWhom,email);
+
+    /* Send Email when payment successes */
+    emailDelivery.send(email,toWhom);
+    return res.status(200).json({charge});
+  } catch (err) {
+    return res.status(500).json({type: err.type, message: err.message});
+  }
 });
 
 module.exports = router;
