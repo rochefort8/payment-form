@@ -26,8 +26,23 @@
 <div class="container">
 
 <div class="jumbotron">
-<h2><p class="text-center">東京東筑会・年会費納入フォーム</p></h2>
+<h2><p class="text-center">東京東筑会</p>
+<p class="text-center"><span id="fiscal-year">2018</span>年度年会費納入</p></h2>
 </div>
+
+<!-- Fiscal Year -->
+<script>
+    var today = new Date();
+    var curMonth = today.getMonth();
+    var fiscalYear = "";
+    if (curMonth >= 3) { // Month starts from 0 to 11....
+        fiscalYear = today.getFullYear().toString();
+    } else {
+        fiscalYear = (today.getFullYear() - 1).toString() ;
+    }
+    var p = document.getElementById('fiscal-year');
+    p.innerHTML = fiscalYear ;
+</script>
 
 <!-- Payment form  -->
 <form class="form-horizontal" role="form" id="payment-form" data-toggle="validator">
