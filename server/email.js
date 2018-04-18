@@ -23,7 +23,8 @@ Email.send = function(sendTo,toWhom) {
 	email.setSubject('D');
 	email.setText('D');
 	email.setHtml('<strong> </strong>');
-	email.addSubstitution('%toWhom%', toWhom)
+        email.addSubstitution('%toWhom%', toWhom);
+        email.addSubstitution('%fiscal-year%', '2018');
 	email.addFilter('templates','template_id','1a518d33-e38f-472f-a5f3-451f2b658a57');
 
 	sendgrid.send(email, function(err, json) {
