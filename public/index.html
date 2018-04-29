@@ -11,9 +11,10 @@
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
 <script src="https://js.stripe.com/v3/"></script>
 <script src="javascripts/jquery.blockUI.js"></script>
-
 <script src="javascripts/validator.js"></script>
 <script src="javascripts/stripe.js"></script>
+
+<script type="text/javascript" src="//jpostal-1006.appspot.com/jquery.jpostal.js"></script>
 
 <!--[if lt IE 9]><script type="text/javascript" src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
 <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" type="text/css">
@@ -22,6 +23,19 @@
 </head>
 
 <body>
+<script>
+$(function () {
+    $('#zip').jpostal({
+        postcode : [
+            '#zip'
+        ],
+        address : {
+            '#pref' : '%3',
+            '#address' : '%4%5'
+        }
+    });
+});
+</script>
 
 <div class="container">
 
@@ -53,19 +67,30 @@
   <div class="form-group has-feedback">
     <label for="name_kanji_family" class="col-sm-2 control-label">お名前（漢字）</label>
     <div class="input-group col-sm-3 continue">
-      <span class="input-group-addon">姓</span>
-      <input type="text" class="form-control" name="name_kanji_family" id="name_kanji_family" placeholder="漢字" x-autocompletetype="surname" required>
+      <input type="text" class="form-control" name="name_kanji_family" id="name_kanji_family" placeholder="姓" x-autocompletetype="surname" required>
     </div>
     <div class="input-group col-sm-3">
-      <span class="input-group-addon">名</span>
-      <input type="text" class="form-control" name="name_kanji_given" id="name_kanji_given" placeholder="漢字" x-autocompletetype="given-name" required>
+      <input type="text" class="form-control" name="name_kanji_given" id="name_kanji_given" placeholder="名" x-autocompletetype="given-name" required>
     </div>
   </div>
+
+  <div class="form-group has-feedback">
+    <label for="name_kana_family" class="col-sm-2 control-label">お名前（カナ）</label>
+    <div class="input-group col-sm-3 continue">
+      <input type="text" class="form-control" name="name_kana_family" id="name_kana_family" placeholder="セイ" x-autocompletetype="surname" required>
+    </div>
+    <div class="input-group col-sm-3">
+      <input type="text" class="form-control" name="name_kana_given" id="name_kana_given" placeholder="メイ" x-autocompletetype="given-name" required>
+    </div>
+  </div>
+
+
   <div class="form-group">
     <label for="pref" class="col-sm-2 control-label"></label>
     <div class="col-sm-6">
-      <span class="help-block">高校在学時の姓名を記載ください。</span>
+      <span class="help-block"><span class="label label-default">注</span>在学当時の姓名を記載ください。</span>
     </div>
+
   </div>
   <div class="form-group has-feedback">
     <label for="graduate" class="col-sm-2 control-label">卒業期</label>
@@ -155,13 +180,14 @@
     </div>
   </div>
 
+<h2>ご連絡先</h2>
   <div class="form-group has-feedback">
     <label for="email" class="col-sm-2 control-label">メールアドレス</label>
     <div class="col-sm-6">
-      <input type="email" class="form-control alphabet" name="email" id="email" pattern="^[^0-9][a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[@][a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,4}$" x-autocompletetype="email" required>
-      <span class="help-block"><span class="label label-default">例</span>test@example.com</span>
+      <input type="email" class="form-control alphabet" name="email" id="email" placeholder="yoki-kana@tochiku.com" pattern="^[^0-9][a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[@][a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,4}$" x-autocompletetype="email" required>
     </div>
   </div>
+
 
   <div class="form-group hide">
     <label for="email_confirm" class="col-sm-2 control-label">ご確認</label>
@@ -171,6 +197,114 @@
     </div>
   </div>
 
+  <div class="form-group has-feedback">
+    <label for="tel" class="col-sm-2 control-label">電話番号</label>
+    <div class="col-sm-6">
+      <input type="tel" class="form-control alphabet" name="tel" id="tel" placeholder="0xx-xxxx-xxxx" pattern="0\d{1,4}[\-\s]?\d{1,4}[\-\s]\d{4}" x-autocompletetype="phone-national" required>
+      <span class="help-block"><span class="label label-default">注</span>市外局番よりハイフン(-)を入れてご記入ください。</span>
+      <span class="help-block">固定電話/携帯電話いずれもOKです.</span>
+    </div>
+  </div>
+
+</section>
+
+<section class="address">
+<h2>ご住所</h2>
+  <div class="form-group has-feedback">
+    <label for="zip" class="col-sm-2 control-label">郵便番号</label>
+    <div class="col-sm-4">
+      <input type="text" class="form-control alphabet" name="zip" id="zip" placeholder="xxx-xxxx" pattern="\d{3}[\-\s]?\d{4}" x-autocompletetype="postal-code">
+      <span class="help-block">入力後に住所が自動入力されます</span>
+    </div>
+  </div>
+
+  <div class="form-group has-feedback">
+    <label for="pref" class="col-sm-2 control-label">都道府県</label>
+    <div class="col-sm-3">
+      <select name="pref" id="pref" class="form-control" x-autocompletetype="region" required>
+      <option value="" selected="selected">-- 都道府県 --</option>
+      <optgroup label="北海道">
+        <option value="1">北海道</option>
+      </optgroup>
+      <optgroup label="東北">
+        <option value="青森県">青森県</option>
+	<option value="岩手県">岩手県</option>
+	<option value="宮城県">宮城県</option>
+	<option value="秋田県">秋田県</option>
+	<option value="山形県">山形県</option>
+	<option value="福島県">福島県</option>
+      </optgroup>
+      <optgroup label="関東">
+	<option value="茨城県">茨城県</option>
+	<option value="栃木県">栃木県</option>
+	<option value="群馬県">群馬県</option>
+	<option value="埼玉県">埼玉県</option>
+	<option value="千葉県">千葉県</option>
+	<option value="東京都">東京都</option>
+	<option value="神奈川県">神奈川県</option>
+      </optgroup>
+      <optgroup label="北陸">
+	<option value="新潟県">新潟県</option>
+	<option value="富山県">富山県</option>
+	<option value="石川県">石川県</option>
+	<option value="福井県">福井県</option>
+      </optgroup>
+      <optgroup label="中部">
+	<option value="山梨県">山梨県</option>
+	<option value="長野県">長野県</option>
+	<option value="岐阜県">岐阜県</option>
+	<option value="静岡県">静岡県</option>
+	<option value="愛知県">愛知県</option>
+      </optgroup>
+      <optgroup label="近畿">
+	<option value="三重県">三重県</option>
+	<option value="滋賀県">滋賀県</option>
+	<option value="京都府">京都府</option>
+	<option value="大阪府">大阪府</option>
+	<option value="兵庫県">兵庫県</option>
+	<option value="奈良県">奈良県</option>
+	<option value="和歌山県">和歌山県</option>
+      </optgroup>
+      <optgroup label="中国">
+	<option value="鳥取県">鳥取県</option>
+	<option value="島根県">島根県</option>
+	<option value="岡山県">岡山県</option>
+	<option value="広島県">広島県</option>
+	<option value="山口県">山口県</option>
+      </optgroup>
+      <optgroup label="四国">
+	<option value="徳島県">徳島県</option>
+	<option value="香川県">香川県</option>
+	<option value="愛媛県">愛媛県</option>
+	<option value="高知県">高知県</option>
+      </optgroup>
+      <optgroup label="九州">
+	<option value="福岡県">福岡県</option>
+	<option value="佐賀県">佐賀県</option>
+	<option value="長崎県">長崎県</option>
+	<option value="熊本県">熊本県</option>
+	<option value="大分県">大分県</option>
+	<option value="宮崎県">宮崎県</option>
+	<option value="鹿児島県">鹿児島県</option>
+	<option value="沖縄県">沖縄県</option>
+      </optgroup>
+      </select>
+    </div>
+  </div>
+
+  <div class="form-group has-feedback">
+    <label for="address" class="col-sm-2 control-label">市区町村/番地</label>
+    <div class="col-sm-8">
+      <input type="text" class="form-control" name="address" id="address" x-autocompletetype="street-address" required>
+    </div>
+  </div>
+
+  <div class="form-group has-feedback">
+    <label for="building" class="col-sm-2 control-label">建物名など</label>
+    <div class="col-sm-8">
+      <input type="text" class="form-control" name="building" id="building">
+    </div>
+  </div>
 </section>
 
 <h2>クレジットカード情報</h2>
@@ -198,7 +332,6 @@
                 <!-- Stripe Card Element -->
         </span>
         <span class="help-block"><span class="label label-default">例</span>0123 4567 8901 2345</span>
-
       </div>
     </div>
 
@@ -208,7 +341,7 @@
         <span id="card-exp" class="form-control">
           <!-- Stripe Card Expiry Element -->
         </span>
-        <span class="help-block"><span class="label label-default">例</span>12 / 05（月 / 年）</span>
+        <span class="help-block"><span class="label label-default">例</span>12 / 22（月 / 年）</span>
       </div>
     </div>
 
@@ -218,7 +351,7 @@
         <span id="card-cvc" class="form-control">
         <!-- Stripe CVC Element -->
         </span>
-        <span class="help-block">カードの裏面にある数桁の数字です.</span>
+        <span class="help-block">カード裏面にある数桁の数字です.</span>
       </div>
     </div>
   </div>
