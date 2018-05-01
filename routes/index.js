@@ -17,12 +17,13 @@ router.get('/', function(req, res, next) {
 
 /* Payment */
 router.post('/charge', async (req, res, next) => {
-  let {token,graduate,lastname,firstname,email} = req.body;
+  let {token,email,graduate,fullname,fullname_kana} = req.body;
 
-  var toWhom = graduate + '期:' + lastname + ' ' + firstname;
+  var toWhom = graduate + '期:' + fullname ;
+  var toWhom_ex = toWhom + ':' + fullname_kana;
 
   try {
-    let charge = await payment.charge(token,toWhom,email);
+    let charge = await payment.charge(token,toWhom_ex,email);
 
     /* Send Email when payment successes */
     emailDelivery.send(email,toWhom);

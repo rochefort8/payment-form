@@ -120,6 +120,10 @@ $(document).ready(function(){
 
 	    var name_kanji_family = $('#name_kanji_family').val() ;
 	    var name_kanji_given = $('#name_kanji_given').val() ;
+	    var name_kana_family = $('#name_kana_family').val() ;
+	    var name_kana_given = $('#name_kana_given').val() ;
+	    var fullname      = name_kanji_family + ' ' + name_kanji_given ;
+	    var fullname_kana = name_kana_family  + ' ' + name_kana_given ;
 	    var graduate = $('#graduate').val() ;
 	    var email = $('#email').val() ;
 
@@ -154,10 +158,10 @@ $(document).ready(function(){
 
 		    $.post('/charge', {
 			    'token': token,
+			    'email': email,
 			    'graduate': graduate,
-			    'lastname': name_kanji_family,
-			    'firstname': name_kanji_given,
-			    'email': email
+			    'fullname': fullname,
+			    'fullname_kana': fullname_kana
 			})
 			// Assign handlers immediately after making the request,
 			.done(function(data, textStatus, jqXHR) {

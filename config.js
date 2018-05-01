@@ -22,6 +22,8 @@ module.exports = {
   // Webhooks: https://dashboard.stripe.com/account/webhooks
   // Storing these keys and secrets as environment variables is a good practice.
   // You can fill them in your own `.env` file.
+
+  amount: '3112',
   stripe: {
     // The two-letter country code of your Stripe account (required for Payment Request).
     country: 'JP',

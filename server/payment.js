@@ -27,17 +27,18 @@
 
 const config = require('../config');
 const stripe = require('stripe')(config.stripe.secretKey);
+
 stripe.setApiVersion(config.stripe.apiVersion);
 
 var Payment = function() {}
 
 Payment.charge = function (token,description,email) {
     return stripe.charges.create({
-	    amount: 3000,
+	    amount: config.amount,
 	    currency: "jpy",
 	    card: token,
 	    description: description,
-	    receipt_email: email
+	    receipt_email: email,
 	});
 }
 
