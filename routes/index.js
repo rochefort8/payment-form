@@ -17,7 +17,7 @@ router.get('/', function(req, res, next) {
 
 /* Payment */
 router.post('/charge', async (req, res, next) => {
-  let {token,email,graduate,fullname,fullname_kana} = req.body;
+	let {token,email,graduate,fullname,fullname_kana,phone,address} = req.body;
 
   var toWhom = graduate + '期:' + fullname ;
   var toWhom_ex = toWhom + ':' + fullname_kana;
@@ -27,6 +27,8 @@ router.post('/charge', async (req, res, next) => {
 
     /* Send Email when payment successes */
     emailDelivery.send(email,toWhom);
+    emailDelivery.sendToAdmin(toWhom_ex,email,phone,address);
+
     return res.status(200).json({charge});
   } catch (err) {
     return res.status(500).json({type: err.type, message: err.message});

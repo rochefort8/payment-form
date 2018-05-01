@@ -126,6 +126,12 @@ $(document).ready(function(){
 	    var fullname_kana = name_kana_family  + ' ' + name_kana_given ;
 	    var graduate = $('#graduate').val() ;
 	    var email = $('#email').val() ;
+	    var phone = $('#tel').val() ;
+	    var zip = $('#zip').val() ;
+	    var pref = $('#pref').val() ;
+	    var address = $('#address').val() ;
+	    var building = $('#building').val() ;
+	    var full_address = zip + ':' + pref + address + ' ' + building;
 
 	    // Put name with graduates onto the thanks page
 	    var thanksTo= graduate + '期' + ' ' + name_kanji_family + name_kanji_given + ' 様' ;
@@ -161,7 +167,9 @@ $(document).ready(function(){
 			    'email': email,
 			    'graduate': graduate,
 			    'fullname': fullname,
-			    'fullname_kana': fullname_kana
+			    'fullname_kana': fullname_kana,
+			    'phone': phone,
+			    'address': full_address
 			})
 			// Assign handlers immediately after making the request,
 			.done(function(data, textStatus, jqXHR) {

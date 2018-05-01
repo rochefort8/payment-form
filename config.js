@@ -38,6 +38,11 @@ module.exports = {
   email: {
 	apiKey: process.env.SENDGRID_API_KEY,
   },
+
+  admin: {
+	email: process.env.ADMIN_EMAIL,
+  },
+
   // Server port.
   port: process.env.PORT || 8000,
 };
