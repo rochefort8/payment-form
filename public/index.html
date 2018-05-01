@@ -315,8 +315,21 @@ $(function () {
 
 <section class="payment">
 
+  <div class="form-group">
+    <label for="pref" class="col-sm-2 control-label"> 金額</label>
+    <div class="col-sm-9">
+      <span class="help-block">3,112円 (年会費3,000円 + 手数料112円)</span>
+      <span class="help-block">手数料のご負担をお願いします。</span>
+    </div>
+
+    <!--- Dummy input form for validator -->
+    <div class="col-sm-9" style="display:none">
+      <input type="text" class="form-control" name="card-validation" id="card-validation" value="" required>
+    </div>
+  </div>
+
   <div class="form-group has-feedback">
-    <label for="pref" class="col-sm-2 control-label"></label>
+    <label for="pref" class="col-sm-2 control-label">利用可能なカード</label>
     <div class="col-sm-9">
       <span class="help-block">下記のマークのカードブランドがご利用いただけます。</span>
       <img src="images/card_accept.png" class="img-responsive">
