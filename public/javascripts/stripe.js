@@ -144,6 +144,8 @@ function onSubmitPayment(stripe,card) {
 		alert(result.error.message);
 		$.unblockUI();
 	    } else {
+
+		// Publish real payment(charge) request to stripe with token and several info
 		var token = result.token.id;
 
 		$.post('/charge', {
