@@ -27,8 +27,12 @@
 
 $(document).ready(function(){
 
+	// Get stripe public key from server
+    $.get('/config')
+    .done(function(config) {
+
 	// Create a Stripe client
-        var stripe = Stripe('pk_test_K3rm5fd3O845Y425biVp6d9D');
+        var stripe = Stripe(config.stripePublishableKey);
 
         // Create an instance of Elements
         var elements = stripe.elements();
@@ -71,6 +75,8 @@ $(document).ready(function(){
 
 	// Submit payment
 	onSubmitPayment(stripe,card);
+
+    });
 });
 
 function createCardElementValidator (element,element_id) {

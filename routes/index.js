@@ -6,13 +6,20 @@
  */
 var express = require('express');
 var router = express.Router();
-
+const config = require('../config');
 const payment = require('../server/payment');
 const emailDelivery = require('../server/email');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
+});
+
+// Expose the Stripe publishable key and other pieces of config via an endpoint.
+router.get('/config', (req, res) => {
+  res.json({
+  stripePublishableKey: config.stripe.publishableKey,
+  });
 });
 
 /* Payment */
