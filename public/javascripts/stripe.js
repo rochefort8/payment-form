@@ -23,6 +23,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  * ======================================================================== */
+'use strict';
 
 $(document).ready(function(){
 
@@ -63,129 +64,111 @@ $(document).ready(function(){
         });
         exp.mount('#card-exp');
 
-	// Handle real-time validation errors from the card Element.
-	card.addEventListener('change', function(event) {
-		console.log(event);
+	// Add event to handle real-time validation errors from the card Element.
+	createCardElementValidator (card,'.card-number');
+	createCardElementValidator (cvc, '.card-cvc');
+	createCardElementValidator (exp, '.card-exp');
 
-		if (event.complete) {
-		    $('.card-number').removeClass('has-error has-success');
-		    $('.card-number').addClass('has-success');
-		} else {
-		    $('.card-number').removeClass('has-error has-success');
-		    $('.card-number').addClass('has-error');
-		}
-		validateCardInfoAndTrigger();
-	    });
+	// Submit payment
+	onSubmitPayment(stripe,card);
+});
 
-	cvc.addEventListener('change', function(event) {
-		console.log(event);
+function createCardElementValidator (element,element_id) {
+    element.addEventListener('change', function(event) {
+        console.log(event);
 
-
-		if (event.complete) {
-		    $('.card-cvc').removeClass('has-error has-success');
-		    $('.card-cvc').addClass('has-success');
-		} else {
-		    $('.card-cvc').removeClass('has-error has-success');
-		    $('.card-cvc').addClass('has-error');
-		}
-		validateCardInfoAndTrigger();
-	    });
-
-	exp.addEventListener('change', function(event) {
-		if (event.complete) {
-		    $('.card-exp').removeClass('has-error has-success');
-		    $('.card-exp').addClass('has-success');
-		} else {
-		    $('.card-exp').removeClass('has-error has-success');
-		    $('.card-exp').addClass('has-error');
-		}
-		validateCardInfoAndTrigger();
-	    });
-
-	function validateCardInfoAndTrigger() {
-		if($('.card-number').hasClass('has-success') &&
-		   $('.card-cvc').hasClass('has-success') &&
-		   $('.card-exp').hasClass('has-success')) {
-		    $('input[name="card-validation"]').val('1');
-		    $('input[name="card-validation"]').trigger('change');
-		} else {
-		    $('input[name="card-validation"]').val('');
-		    $('input[name="card-validation"]').trigger('change');
-		}
+	if (event.complete) {
+	    $(element_id).removeClass('has-error has-success');
+	    $(element_id).addClass('has-success');
+	} else {
+	    $(element_id).removeClass('has-error has-success');
+	    $(element_id).addClass('has-error');
 	}
+	validateCardInfoAndTrigger();
+    });
+}
 
-        // Submit
-        $('#payment-submit').on('click', function(e){
-            e.preventDefault();
+function validateCardInfoAndTrigger() {
+    if($('.card-number').hasClass('has-success') &&
+       $('.card-cvc').hasClass('has-success') &&
+       $('.card-exp').hasClass('has-success')) {
+	$('input[name="card-validation"]').val('1');
+	$('input[name="card-validation"]').trigger('change');
+    } else {
+	$('input[name="card-validation"]').val('');
+	$('input[name="card-validation"]').trigger('change');
+    }
+}
 
-	    var name_kanji_family = $('#name_kanji_family').val() ;
-	    var name_kanji_given = $('#name_kanji_given').val() ;
-	    var name_kana_family = $('#name_kana_family').val() ;
-	    var name_kana_given = $('#name_kana_given').val() ;
-	    var fullname      = name_kanji_family + ' ' + name_kanji_given ;
-	    var fullname_kana = name_kana_family  + ' ' + name_kana_given ;
-	    var graduate = $('#graduate').val() ;
-	    var email = $('#email').val() ;
-	    var phone = $('#tel').val() ;
-	    var zip = $('#zip').val() ;
-	    var pref = $('#pref').val() ;
-	    var address = $('#address').val() ;
-	    var building = $('#building').val() ;
-	    var full_address = zip + ':' + pref + address + ' ' + building;
+function onSubmitPayment(stripe,card) {
 
-	    // Put name with graduates onto the thanks page
-	    var thanksTo= graduate + '期' + ' ' + name_kanji_family + name_kanji_given + ' 様' ;
-	    document.getElementById("thanks-to").textContent=thanksTo;
+    $('#payment-submit').on('click', function(e){
+        e.preventDefault();
 
-	    $.blockUI({ css: { 
-			border: 'none', 
-			    padding: '15px',
-			    backgroundColor: 'none',
-			    color: '#333', 
-			    '-webkit-border-radius': '10px', 
-			    '-moz-border-radius': '10px', 
-			    opacity: .8 
-			    },
-			message: $('#tallContent')} 
-		);
+	var name_kanji_family = $('#name_kanji_family').val() ;
+	var name_kanji_given = $('#name_kanji_given').val() ;
+	var name_kana_family = $('#name_kana_family').val() ;
+	var name_kana_given = $('#name_kana_given').val() ;
+	var fullname      = name_kanji_family + ' ' + name_kanji_given ;
+	var fullname_kana = name_kana_family  + ' ' + name_kana_given ;
+	var graduate = $('#graduate').val() ;
+	var email = $('#email').val() ;
+	var phone = $('#tel').val() ;
+	var zip = $('#zip').val() ;
+	var pref = $('#pref').val() ;
+	var address = $('#address').val() ;
+	var building = $('#building').val() ;
+	var full_address = zip + ':' + pref + address + ' ' + building;
 
-            var cardData = {
-                'name': $('#name').val()
-            };
-            stripe.createToken(card, cardData).then(function(result) {
-                console.log(result);
+	// Put name with graduates onto the thanks page
+	var thanksTo= graduate + '期' + ' ' + name_kanji_family + name_kanji_given + ' 様' ;
+	document.getElementById("thanks-to").textContent=thanksTo;
 
-                if(result.error && result.error.message){
-                    alert(result.error.message);
-		    $.unblockUI();
-                }else{
-		    var token = result.token.id;
-		    // AJAX - you would send 'token' to your server here.
+	$.blockUI({ css: { 
+		        border: 'none', 
+			padding: '15px',
+			backgroundColor: 'none',
+			color: '#333', 
+			'-webkit-border-radius': '10px', 
+			'-moz-border-radius': '10px', 
+			opacity: .8 
+			},
+		    message: $('#tallContent')} 
+	    );
+        var cardData = {
+	    'name': $('#name').val()
+	};
 
-		    $.post('/charge', {
-			    'token': token,
+	stripe.createToken(card, cardData).then(function(result) {
+            if(result.error && result.error.message){
+		alert(result.error.message);
+		$.unblockUI();
+	    } else {
+		var token = result.token.id;
+
+		$.post('/charge', {
+		            'token': token,
 			    'email': email,
 			    'graduate': graduate,
 			    'fullname': fullname,
 			    'fullname_kana': fullname_kana,
 			    'phone': phone,
 			    'address': full_address
-			})
-			// Assign handlers immediately after making the request,
-			.done(function(data, textStatus, jqXHR) {
+				})
+
+		    // Assign handlers immediately after making the request,
+		    .done(function(data, textStatus, jqXHR) {
 			    $.unblockUI();
 			    $('#payment-form').hide();
 			    $('#thanks').show();
 			})
-			.fail(function(jqXHR, textStatus, errorThrown) {
+		    .fail(function(jqXHR, textStatus, errorThrown) {
 			    $.unblockUI();
 			    var errorType = 'Error type : ' + jqXHR.responseJSON.type + '\n'; 
 			    var errorMessage = 'Message : ' + jqXHR.responseJSON.message;
 			    alert('支払いできませんでした。' + '\n' + errorType + errorMessage) ;
 			});
-
-                }
-
-            });
-       });
-});
+	    }
+        });
+    });
+}
