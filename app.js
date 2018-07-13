@@ -32,8 +32,12 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var sslRedirect = require('heroku-ssl-redirect');
 
 var app = express();
+
+// enable ssl redirect
+app.use(sslRedirect());
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
