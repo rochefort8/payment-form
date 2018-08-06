@@ -1,7 +1,7 @@
 {
   "name": "Payment form by Stripe",
   "description": "",
-    "keywords": ["Stripe","node","express"],
+  "keywords": ["Stripe","node","express"],
   "repository": "https://github.com/rochefort8/payment-form.git",
   "env": {
     "ADMIN_EMAIL": {
@@ -11,15 +11,14 @@
     "SENDGRID_API_KEY": {
       "description": "API key for Sendgrid",
       "value": ""
-    }
+    },
     "STRIPE_PUBLISHABLE_KEY": {
       "description": "Publishable key for Stripe",
       "value": ""
-    }      
+    },      
     "STRIPE_SECRET_KEY": {
       "description": "Secret key for Stripe",	  
       "value": ""
-    },
-    "addons": [""]
+    }
   }
 }
