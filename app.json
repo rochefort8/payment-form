@@ -1,10 +1,7 @@
 {
   "name": "Payment form by Stripe",
   "description": "",
-  "keywords": [
-    "Stripe",
-    "nodejs",
-  ],
+    "keywords": ["Stripe","node","express"],
   "repository": "https://github.com/rochefort8/payment-form.git",
   "env": {
     "ADMIN_EMAIL": {
@@ -22,6 +19,7 @@
     "STRIPE_SECRET_KEY": {
       "description": "Secret key for Stripe",	  
       "value": ""
-    }
+    },
+    "addons": [""]
   }
 }
