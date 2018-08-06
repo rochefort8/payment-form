@@ -6,7 +6,6 @@
     "nodejs",
   ],
   "repository": "https://github.com/rochefort8/payment-form.git",
-  "logo": "https://raw.githubusercontent.com/xxx/xxx/master/logo.png",
   "env": {
     "ADMIN_EMAIL": {
       "description": "Email address of this payment form's administrator",
@@ -23,6 +22,6 @@
     "STRIPE_SECRET_KEY": {
       "description": "Secret key for Stripe",	  
       "value": ""
-    }      
+    }
   }
 }
