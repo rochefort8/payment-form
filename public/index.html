@@ -296,8 +296,8 @@ $(function () {
   <div class="form-group has-feedback">
     <label for="tel" class="col-sm-2 control-label">電話番号</label>
     <div class="col-sm-6">
-      <input type="tel" class="form-control alphabet" name="tel" id="tel" placeholder="0xx-xxxx-xxxx" pattern="0\d{1,4}[\-\s]?\d{1,4}[\-\s]\d{4}" x-autocompletetype="phone-national">
-      <span class="help-block"><span class="label label-default">注</span>市外局番よりハイフン(-)を入れてご記入ください。</span>
+      <input type="tel" class="form-control alphabet" name="tel" id="tel" placeholder="" pattern="(0\d{1,4}[\-\s]?\d{1,4}[\-\s]\d{4})||(0{1}\d{9,10})" x-autocompletetype="phone-national">
+      <span class="help-block"><span class="label label-default">注</span>市外局番よりご記入ください。</span>
       <span class="help-block">固定電話/携帯電話いずれもOKです.</span>
     </div>
   </div>
