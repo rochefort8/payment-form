@@ -7,19 +7,6 @@
     "ADMIN_EMAIL": {
       "description": "Email address of this payment form's administrator",
       "value": ""
-    },
-    "SENDGRID_API_KEY": {
-      "description": "API key for Sendgrid",
-      "value": ""
     }
-    "STRIPE_PUBLISHABLE_KEY": {
-      "description": "Publishable key for Stripe",
-      "value": ""
-    }      
-    "STRIPE_SECRET_KEY": {
-      "description": "Secret key for Stripe",	  
-      "value": ""
-    },
-    "addons": [""]
   }
 }
