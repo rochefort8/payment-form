@@ -7,7 +7,7 @@
 'use strict';
 
 const config = require('../config');
-const apiKey = 'key-c7a367377d41a8c34c8727f5de6f772f'
+const apiKey = config.email.apiKey;
 const domain = 'sandboxa1d8ed7105c14aec90268d0af5f93b8e.mailgun.org';
 const mailgun = require('mailgun-js')({ apiKey, domain })
 
