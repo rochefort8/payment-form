@@ -8,8 +8,12 @@ var express = require('express');
 var router = express.Router();
 const config = require('../config');
 const payment = require('../server/payment');
-//const emailDelivery = require('../server/email');
-const emailDelivery = require('../server/mailgun');
+const emailDelivery = require('../server/email');
+
+/*
+ * Backup
+ */
+//const emailDelivery = require('../server/mailgun');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
