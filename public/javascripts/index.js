@@ -265,7 +265,7 @@ function startBlockUI() {
 		    opacity: .8
 		    },
 		message: $('#tallContent')
-		}
+	});
 }
 
 function stopBlockUI() {
