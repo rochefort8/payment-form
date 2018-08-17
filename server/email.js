@@ -62,6 +62,8 @@ Email.sendFeedback = function(commentFrom,rating,comment) {
 
     console.log('Feedback from ' + commentFrom);
     console.log('Rating='+ rating + ',Comment=' + comment);
+
+    console.log(feedbackEmailAddress);
     
     emailForFeedback.setTos(feedbackEmailAddress);
     emailForFeedback.setFrom(from);
@@ -71,10 +73,10 @@ Email.sendFeedback = function(commentFrom,rating,comment) {
     emailForFeedback.setHtml('<strong> </strong>');
     emailForFeedback.addSubstitution('%commentFrom%', commentFrom);
     emailForFeedback.addSubstitution('%rating%', rating);
-    emailForFeedback.addSubstitution('%comment%', rating);
+    emailForFeedback.addSubstitution('%comment%', comment);
 
     emailForFeedback.addFilter('templates','template_id','28e9b856-892a-45dd-b472-5b441c9684d5');
-    sendgrid.send(emailToAdmin, function(err, json) {
+    sendgrid.send(emailForFeedback, function(err, json) {
 	if (err) {
 	    return console.error(err);
 	}
