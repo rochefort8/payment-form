@@ -40,7 +40,8 @@ module.exports = {
   },
 
   admin: {
-	email: process.env.ADMIN_EMAIL,
+      email: process.env.ADMIN_EMAIL,
+      feedback_email: process.env.FEEDBACK_EMAIL,
   },
 
   // Server port.

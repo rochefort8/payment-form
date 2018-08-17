@@ -47,4 +47,18 @@ router.post('/charge', async (req, res, next) => {
   }
 });
 
+/* Payment */
+router.post('/feedback', async (req, res, next) => {
+    let {email,graduate,fullname,rating,comment} = req.body;
+
+    var from = graduate + '期:' + fullname ;
+
+    try {
+	emailDelivery.sendFeedback(from,rating,comment);
+	return res.status(200).json({charge});
+    } catch (err) {
+	return res.status(500).json({type: err.type, message: err.message});
+    }
+});
+    
 module.exports = router;

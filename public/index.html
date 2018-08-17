@@ -20,6 +20,7 @@
 <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" type="text/css">
 <link rel="stylesheet" href="//code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
 <link rel="stylesheet" href="stylesheets/style.css" type="text/css">
+<link rel="stylesheet" href="stylesheets/rating.css" type="text/css">
 </head>
 
 <body>
@@ -372,7 +373,6 @@ $(function () {
       <span class="help-block">※本決済では、カード情報は暗号化されて送信されます。安心してご利用ください。</span>
     </div>
   </div>
-
 </section>
 
 <hr>
@@ -389,19 +389,66 @@ $(function () {
 </div>
 
 <!-- Thanks page -->
-<div id="thanks" style="display:none">
+<form class="form-horizontal" role="form" id="thanks" data-toggle="validator" style="display:none">
+
   <h3><p class="text-center" id="thanks-to">XX期 YY ZZ 様</p></h3>
   <p class="help-block text-center">
 年会費納入、誠にありがとうございました。<br>
-カード決済が完了しました。東京東筑会からのお知らせメールをご確認ください。
-  </p>
+カード決済が完了しました。東京東筑会からのお知らせメールをご確認ください。</p>
+  <hr>
+  <h4><p class="text-center" id="thanks-to">オンライン年会費支払いは如何でしたか？</p></h4>
+  <div class="form-group">
+    <label for="pref" class="col-sm-2 control-label"></label>
+    <div class="col-sm-9">
+      <span class="help-block">評価、コメントをお寄せください！今後のサービス向上のため、本サービス開発者（85期・荻原)に送信されます。</span>
+    </div>
+  </div>
+
+  <!--- Dummy input form for validator -->
+  <div class="col-sm-9" style="display:none">
+    <input type="text" class="form-control" name="feedback-validation" id="feedback-validation" value="" required>
+  </div>
+  <div class="form-group has-feedback">
+    <label for="email" class="col-sm-2 control-label">評価</label>
+    <div class="col-sm-6">
+        <fieldset class="rating" id="rating-g" required>
+            <input type="radio" id="star5" name="rating" value="5" /><label for="star5">5</label>
+	    <input type="radio" id="star4" name="rating" value="4" /><label for="star4">4</label>
+	    <input type="radio" id="star3" name="rating" value="3" /><label for="star3">3</label>
+            <input type="radio" id="star2" name="rating" value="2" /><label for="star2">2</label>
+	    <input type="radio" id="star1" name="rating" value="1" /><label for="star1">1</label>
+	</fieldset>
+    </div>
+  </div>
+  <div class="form-group has-feedback">
+    <label for="name_kanji_family" class="col-sm-2 control-label">コメント</label>
+    <div class="col-sm-10">
+      <textarea "rows="3" class="form-control" placeholder="一言どうぞ！" id="feedback-comment"></textarea>
+    </div>
+  </div>
+
+  <button type="submit" id="feedback-submit" class="btn btn-primary btn-lg btn-block"><span class="glyphicon glyphicon-chevron-right"></span>評価を送信する</button>
+
   <img src="images/tochikun_01.png" class="img-responsive center-block">
-      <nav class="col-sm-20" role="navigation">
+  <hr>  <nav class="col-sm-20" role="navigation">
       <a href=./index.html type="button" class="btn btn-default btn-lg btn-block"><span class="glyphicon glyphicon-chevron-left"></span> 年会費支払いフォームに戻る</button>
       <a href="https://tochikukai.com" type="button" class="btn btn-primary btn-lg btn-block"><span class="glyphicon glyphicon-chevron-right"></span> 東京東筑会ホームページへ</a>
-      </nav>
-    </div>
-</div> <!-- container -->
+  </nav>
+</form>
+
+<!-- Thanks for feedback -->
+<div id="thanks-for-feedback" style="display:none">
+     <p class="help-block text-center">
+評価とコメントをありがとうございました。ご意見等は今後のサービス向上に活用いたします。
+
+  <img src="images/tochikun_01.png" class="img-responsive center-block">
+  <nav class="col-sm-20" role="navigation">
+      <a href=./index.html type="button" class="btn btn-default btn-lg btn-block"><span class="glyphicon glyphicon-chevron-left"></span> 年会費支払いフォームに戻る</button>
+      <a href="https://tochikukai.com" type="button" class="btn btn-primary btn-lg btn-block"><span class="glyphicon glyphicon-chevron-right"></span> 東京東筑会ホームページへ</a>
+  </nav>
+</div>
+
+
 
 <!-- Thanks page -->
 <div id="payment-error" style="display:none">

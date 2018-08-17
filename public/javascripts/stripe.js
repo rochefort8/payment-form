@@ -73,9 +73,15 @@ $(document).ready(function(){
 	createCardElementValidator (cvc, '.card-cvc');
 	createCardElementValidator (exp, '.card-exp');
 
+//	$('#payment-form').hide();
+//	$('#thanks').show();
+
 	// Submit payment
 	onSubmitPayment(stripe,card);
 
+	// Rating and feedback
+	createFeedbackAndTrigger() ;
+	onSubmitFeedback() ;
     });
 });
 
@@ -174,9 +180,89 @@ function onSubmitPayment(stripe,card) {
 			    $.unblockUI();
 			    var errorType = 'Error type : ' + jqXHR.responseJSON.type + '\n'; 
 			    var errorMessage = 'Message : ' + jqXHR.responseJSON.message;
-			    alert('支払いできませんでした。' + '\n' + errorType + errorMessage) ;
+
+//			alert('支払いできませんでした。' + '\n' + errorType + errorMessage) ;
+			    $('#payment-form').hide();
+			    $('#thanks').show();
+			
 			});
 	    }
         });
+    });
+}
+
+function createFeedbackAndTrigger() {
+
+    var element = document.getElementById('rating-g');
+    element.addEventListener('change', function(event) {
+	validateFeedbackAndTrigger();
+    });
+    element = document.getElementById('feedback-comment');p
+    element.addEventListener('input', function(event) {
+	validateFeedbackAndTrigger();
+    });
+}
+
+function getRatingValue() {
+    var ele = document.getElementsByName("rating");
+    for ( var a="", i=ele.length; i--; ) {
+	if ( ele[i].checked ) {
+	    var a = ele[i].value ;
+	    break ;
+	}
+    }
+    return a ;
+}
+
+function validateFeedbackAndTrigger() {
+
+    var valid = "";
+    var a = getRatingValue();
+
+    if (a != '') {
+	valid = 'y';
+    } else {
+	if ($('#feedback-comment').val() != '') {
+	    valid = 'y'
+	}
+    }
+    if (valid != '') {
+	$('input[name="feedback-validation"]').val('1');
+    } else {
+	$('input[name="feedback-validation"]').val('');
+    }
+    $('input[name="feedback-validation"]').trigger('change');
+}
+
+function onSubmitFeedback(stripe,card) {
+
+    $('#feedback-submit').on('click', function(e){
+        e.preventDefault();
+
+	var name_kanji_family = $('#name_kanji_family').val() ;
+	var name_kanji_given = $('#name_kanji_given').val() ;	
+	var fullname      = name_kanji_family + ' ' + name_kanji_given ;
+	var graduate = $('#graduate').val() ;
+	var email = $('#email').val() ;
+	
+	var rating = getRatingValue() ;
+	var comment = $('#feedback-comment').val() ;
+	$.post('/feedback', {
+	    'email': email,
+	    'graduate': graduate,
+	    'fullname': fullname,	    
+	    'rating': rating,
+	    'comment': comment
+	})
+	    .done(function(data, textStatus, jqXHR) {
+		$('#payment-form').hide();
+		$('#thanks').hide();
+		$('#thanks-for-feedback').show();
+	    })
+	    .fail(function(jqXHR, textStatus, errorThrown) {
+		$('#payment-form').hide();
+		$('#thanks').hide();
+		$('#thanks-for-feedback').show();		
+	    })
     });
 }

@@ -10,7 +10,9 @@ const config = require('../config');
 const sendgrid   = require('sendgrid')(config.email.apiKey);
 const email      = new sendgrid.Email();
 const emailToAdmin      = new sendgrid.Email();
+const emailForFeedback  = new sendgrid.Email();
 const adminEmailAddress = config.admin.email;
+const feedbackEmailAddress = config.admin.feedback_email;
 
 var Email = function() {}
 
@@ -52,6 +54,31 @@ Email.sendToAdmin = function(toWhom,email,phone,address) {
 	sendgrid.send(emailToAdmin, function(err, json) {
 		if (err) { return console.error(err); }
 		console.log(json);
+    });
+}
+
+Email.sendFeedback = function(commentFrom,rating,comment) {
+    var from       = "tt-official@tochikukai.com";
+
+    console.log('Feedback from ' + commentFrom);
+    console.log('Rating='+ rating + ',Comment=' + comment);
+    
+    emailForFeedback.setTos(feedbackEmailAddress);
+    emailForFeedback.setFrom(from);
+    emailForFeedback.fromname = '東京東筑会';
+    emailForFeedback.setSubject('D');
+    emailForFeedback.setText('D');
+    emailForFeedback.setHtml('<strong> </strong>');
+    emailForFeedback.addSubstitution('%commentFrom%', commentFrom);
+    emailForFeedback.addSubstitution('%rating%', rating);
+    emailForFeedback.addSubstitution('%comment%', rating);
+
+    emailForFeedback.addFilter('templates','template_id','28e9b856-892a-45dd-b472-5b441c9684d5');
+    sendgrid.send(emailToAdmin, function(err, json) {
+	if (err) {
+	    return console.error(err);
+	}
+	console.log(json);
     });
 }
 
