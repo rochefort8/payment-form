@@ -44,6 +44,11 @@ module.exports = {
       feedback_email: process.env.FEEDBACK_EMAIL,
   },
 
+  sheet: {
+      credentials: process.env.GOOGLE_CLOUD_CREDENTIALS,
+      id: process.env.GOOGLE_SHEET_ID,
+  },
+
   // Server port.
   port: process.env.PORT || 8000,
 };

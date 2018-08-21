@@ -9,6 +9,7 @@ var router = express.Router();
 const config = require('../config');
 const payment = require('../server/payment');
 const emailDelivery = require('../server/email');
+const record = require('../server/record');
 
 /*
  * Backup
@@ -41,6 +42,9 @@ router.post('/charge', async (req, res, next) => {
     emailDelivery.send(email,toWhom);
     emailDelivery.sendToAdmin(toWhom_ex,email,phone,address);
 
+      /* Record this charge onto spreadsheet */
+      record.set(fullname,graduate);
+      
     return res.status(200).json({charge});
   } catch (err) {
     return res.status(500).json({type: err.type, message: err.message});
