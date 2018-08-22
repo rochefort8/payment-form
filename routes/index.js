@@ -28,6 +28,11 @@ router.get('/config', (req, res) => {
   });
 });
 
+/* Test interface */
+router.get('/test', (req, res) => {
+    return res.json({});
+});
+
 /* Payment */
 router.post('/charge', async (req, res, next) => {
 	let {token,email,graduate,fullname,fullname_kana,phone,address} = req.body;
@@ -38,12 +43,12 @@ router.post('/charge', async (req, res, next) => {
   try {
     let charge = await payment.charge(token,toWhom_ex,email);
 
-    /* Send Email when payment successes */
-    emailDelivery.send(email,toWhom);
-    emailDelivery.sendToAdmin(toWhom_ex,email,phone,address);
+      /* Send Email when payment successes */
+      emailDelivery.send(email,toWhom);
+      emailDelivery.sendToAdmin(toWhom_ex,email,phone,address);
 
       /* Record this charge onto spreadsheet */
-      record.set(fullname,graduate);
+      record.addPayer(fullname,graduate);
       
     return res.status(200).json({charge});
   } catch (err) {
@@ -59,7 +64,10 @@ router.post('/feedback', async (req, res, next) => {
 
     try {
 	emailDelivery.sendFeedback(from,rating,comment);
-	return res.status(200).json({charge});
+
+	/* Record feedback */
+	record.addFeedback(fullname,graduate,rating,comment);
+	return res.status(200).json({});
     } catch (err) {
 	return res.status(500).json({type: err.type, message: err.message});
     }
